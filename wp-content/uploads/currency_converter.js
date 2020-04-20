@@ -1,0 +1,136 @@
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+function updatePage() {
+//console.log('working in js file');
+$(document).ready(function() {
+	
+	var thbv = $('#THB').val();
+	var vndv = $('#VND').val();
+	var lakv = $('#LAK').val();
+	var myrv = $('#MYR').val();
+	var khrv = $('#KHR').val();
+	var phpv = $('#PHP').val();
+	var mmkv = $('#MMK').val();
+	var idrv = $('#IDR').val();
+	var sgdv = $('#SGD').val();
+	var jpyv = $('#JPY').val();
+	var cnyv = $('#CNY').val();
+	var krwv = $('#KRW').val();
+	var hkdv = $('#HKD').val();
+	var inrv = $('#INR').val();
+	var usdv = $('#USD').val();
+	var varv = $('#variableCurrency').val();
+	
+	var currencyValues = [thbv,vndv,lakv,myrv,khrv,phpv,mmkv,idrv,sgdv,jpyv,cnyv,krwv,hkdv,inrv,usdv,varv];
+	//console.log(currencyValues);
+	function convert(fromCurrency,enteredValue,variableCurrency){
+		
+		//console.log("variable currency: "+variableCurrency);
+		var currencyArray = ["THB","VND","LAK","MYR","KHR","PHP","MMK","IDR","SGD","JPY","CNY","KRW","HKD","INR","USD",variableCurrency];
+
+		var usdValues = [rates.THB,rates.VND,rates.LAK,rates.MYR,rates.KHR,rates.PHP,rates.MMK,rates.IDR,rates.SGD,rates.JPY,rates.CNY,rates.KRW,rates.HKD,rates.INR,1,rates[variableCurrency]/*VARIABLE CURRENCY*/];
+		//console.log(usdValues);
+		
+		for (var i = 0; i < currencyArray.length; i += 1) {
+			if(fromCurrency == currencyArray[i]){
+				var usdAmount = enteredValue/usdValues[i];
+				//console.log("usdAmount: "+usdAmount);
+				//console.log("usdValues[i]: "+usdValues[i]);
+				break;
+			}
+		}
+		
+		for (var i = 0; i < currencyArray.length; i += 1) {
+			//console.log("currency: "+currencyArray[i]);
+			//console.log("fromcurrency: "+fromCurrency);
+			//console.log("enteredvalue: "+enteredValue);
+			if(fromCurrency != currencyArray[i]){
+				var amount = Math.round(usdAmount * usdValues[i] * 100)/100;
+				//var amount = Math.round(((xrates[currencyArray[i]] / xrates[fromCurrency]) * enteredValue) * 100) / 100;
+				//console.log("amount: "+amount);
+				currencyValues[i] = amount;
+				if(i != currencyArray.length-1){
+					$('#'+currencyArray[i]).val(amount);
+					$('#'+currencyArray[i]).css('color','black');
+				}else{
+					$('#variableCurrency').val(amount);
+					$('#variableCurrency').css('color','black');
+				}
+			}else{
+				currencyValues[i] = enteredValue;
+				//console.log("enterdValue: "+enteredValue);
+			}
+		 }
+		//console.log("values: "+currencyValues);
+	}
+	function isNumber(enteredValue){
+		if (isNaN(enteredValue)) {
+			return false;
+		}else{return true;}
+	}
+	
+	$('select#currencyFrom').change(function(){
+		delay(function(){
+			var fromCurrency = $('select#currencyFrom').val();
+			var enteredValue = $('#variableCurrency').val();
+			convert(fromCurrency,enteredValue,fromCurrency);
+		}, 1000 );
+	});
+	var currencyNames = ['THB','VND','LAK','MYR','KHR','PHP','MMK','IDR','SGD','JPY','CNY','KRW','HKD','INR','USD','variableCurrency'];
+
+	$("form :input").keyup(function(){
+		delay(function(){
+			var fromCurrency = "no";
+			var enteredValue = 1;
+			for (var i = 0; i < currencyNames.length; i += 1) {
+				var classCurrency = '#'+currencyNames[i];
+				if($(classCurrency).val() != currencyValues[i]){
+					if(i != currencyNames.length-1){
+						fromCurrency = currencyNames[i];
+					}else{
+						fromCurrency = $('select#currencyFrom').val();
+					}
+					enteredValue = $(classCurrency).val();
+					variableCurrency = $('select#currencyFrom').val();
+					if(isNumber(enteredValue)){
+						$(classCurrency).css('color','black');
+						if(i != currencyNames.length){
+							convert(fromCurrency,enteredValue,variableCurrency);
+							break;
+						}else{
+							convert(fromCurrency,enteredValue,fromCurrency);
+							break;
+						}
+					}else{
+						$('#error').show();
+						$('#error').html('Whoa, whoa, calm down. Numbers only please.');$('#error').fadeOut(4000);
+						$(classCurrency).css('color','red');
+						currencyValues[i] = 'invalid';
+					}
+				}
+			}
+		}, 1000 );
+	});
+	
+	$('div.flag').click(function(){
+		var currencyname = $(this).closest("li.currency").attr("id");
+		$(this).closest("li.currency").hide("slow");
+		var flagName = "#unused"+currencyname.substring(8);
+		$(flagName).show('slow');
+		//$(flagName).css("display","inline");
+	});
+	$('li.unusedFlag').click(function(){
+		var currencyname = $(this).attr("id");
+		$(this).hide("slow");/*.css("display","none");*/
+		var flagName = "#currency"+currencyname.substring(6);
+		$(flagName).show('slow');
+		
+	});
+});
+}
