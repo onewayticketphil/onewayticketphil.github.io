@@ -1,0 +1,64 @@
+#currencyBox {overflow: hidden;margin: 0 1.5em 1.5em 0;width: auto;font-family: Arial,Helvetica,sans-serif;}
+#data {padding: 15px 5px 0;}
+ul#currencyList {list-style-type: none;}
+li.currency {clear: both;overflow: auto;width: 100%;}
+#data img {margin: 0px;padding: 0px;border: 0px;}
+div.flag {float: right;margin-right: 20px;margin-top: 2px;}
+div.inputandflag {float: left;}
+div.input_text {float: right;text-align: right;padding-right: 10px;display: inline;}
+input.number {text-align: right;float: right;}
+div.label {float: left;vertical-align: middle;}
+label.currencylabel {display: inline;font-weight: bold;}
+div.currencyFrom {height: 35px;overflow: hidden;background: url("http://www.onewayticketphil.com/wp-content/uploads/2012/05/down_arrow_select.jpg") no-repeat right #ddd;}
+.currencyFrom select {background: transparent;padding: 3px;border: 1px solid #ccc;font-weight: bold;height: 34px;-webkit-appearance: none;}
+#error {text-align: center;display: none;font-weight: bold;font-size: 24px;}
+ul#unusedFlags {list-style-type: none;}
+.unusedFlag {display: none;float: left;margin-right: 5px;}
+label.currencylabel {font-size: 20px;}
+li.currency {padding: 10px 0 8px;}
+div.input_text {width: 160px;}
+input.number {font-size: 20px;width: 150px;}
+div.inputandflag {width: 250px;}
+div.label {margin-top: 4px;}
+div.currencyFrom {width: 290px;}
+.currencyFrom select {width: 298px;font-size: 18px;}
+.sortable-placeholder {border: 1px dashed #ccc;background: none;height: 33px;}
+div.bookmark {margin: 1.5em;}
+div.bookmark input[type=text] {font-size: 14px;width: 70%;}
+div.bookmark input[type=button] {margin: 10px 10px 10px 0;}
+@media (max-width: 900px) and (min-width: 700px) {ul#currencyList {margin: 0 0 1.5em 1em;}}
+@media (max-width: 700px) {ul#currencyList {margin-left: 0px;}
+	i.currency {padding: 3px 0 3px;}
+	label.currencylabel {font-size: 16px;}
+	div.input_text {width: 130px;}
+	input.number {font-size: 20px;width: 130px;}
+	div.inputandflag {width: 220px;}
+	#currencyFrom select {width: 200px;font-size: 14px;padding: 2px;margin-top: 5px;}
+	.unusedFlag {margin-top: 5px;}
+	div.bookmark input[type=text] {width: 90%;}}
+@media (max-width: 550px) {li.currency {padding: 3px 0 5px;}
+	label.currencylabel {font-size: 14px;}
+	div.input_text {width: 130px;}
+	input.number {font-size: 20px;width: 130px;}
+	div.inputandflag {width: 220px;}
+	div#currencyFrom {width: 210px;}
+	#currencyFrom select {width: 200px;font-size: 14px;padding: 2px;margin-top: 5px;}
+	#currencyFrom {padding-left: 20px;}
+	div.label {float: none;clear: both;padding-left: 20px;}
+	#error {font-size: 16px;padding: 0 20px 0 20px;}}
+.Cambodia, .China, .Hong_Kong, .India, .Indonesia, .Japan, .Laos, .Malaysia, .Myanmar, .Philippines, .Singapore, .South_Korea, .Thailand, .United_States, .Vietnam {background: url("http://www.onewayticketphil.com/wp-content/uploads/2013/10/sprites.png") no-repeat;overflow: hidden;}
+.Cambodia {background-position: -102px -70px;width: 42px;height: 28px;}
+.China {background-position: -53px -69px;width: 42px;height: 28px;}
+.Hong_Kong {background-position: -4px -69px;width: 42px;height: 28px;}
+.India {background-position: -153px -68px;width: 42px;height: 28px;}
+.Indonesia {background-position: -203px -37px;width: 42px;height: 28px;}
+.Japan {background-position: -153px -37px;width: 42px;height: 28px;}
+.Laos {background-position: -102px -36px;width: 42px;height: 28px;}
+.Malaysia {background-position: -54px -38px;width: 42px;height: 28px;}
+.Myanmar {background-position: -4px -37px;width: 42px;height: 28px;}
+.Philippines {background-position: -204px -69px;width: 42px;height: 28px;}
+.Singapore {background-position: -203px -3px;width: 42px;height: 28px;}
+.South_Korea {background-position: -153px -4px;width: 42px;height: 28px;}
+.Thailand {background-position: -102px -3px;width: 42px;height: 28px;}
+.United_States {background-position: -53px -3px;width: 42px;height: 28px;}
+.Vietnam {background-position: -3px -2px;width: 42px;height: 28px;}
